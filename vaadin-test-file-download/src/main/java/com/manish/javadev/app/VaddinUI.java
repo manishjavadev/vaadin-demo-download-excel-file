@@ -41,12 +41,24 @@ public class VaddinUI extends UI {
 		verticalLayout.setMargin(true);
 		verticalLayout.setSpacing(true);
 		setContent(verticalLayout);
+		File file = new File("SampleData.xlsx");
+		System.out.println(file.getAbsolutePath());
 
+		String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+		System.out.println("basepath = " + basepath);
+		if (file.exists()) {
+			Resource resource = new FileResource(file);
+			FileDownloader fileDownloader = new FileDownloader(resource);
+			fileDownloader.extend(button);
+			System.out.println("Done");
+		} else {
+			System.out.println("File Not Found");
+		}
 		button.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				File file = new File("SampleData.xlsx");
+				/*File file = new File("SampleData.xlsx");
 				System.out.println(file.getAbsolutePath());
 
 				String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -64,7 +76,7 @@ public class VaddinUI extends UI {
 				} else {
 					System.out.println("File Not Found");
 				}
-
+*/
 			}
 		});
 
